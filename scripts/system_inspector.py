@@ -5,8 +5,9 @@ import os
 import platform
 import shutil
 import socket
+import subprocess
+import time
 from datetime import datetime
-
 
 def get_system_information():
     total, used, free = shutil.disk_usage("/")
@@ -24,9 +25,54 @@ def get_system_information():
         "Disk Total (GB)": round(total / (1024**3), 2),
         "Disk Used (GB)": round(used / (1024**3), 2),
         "Disk Free (GB)": round(free / (1024**3), 2),
+        "Running as Root": check_root(),
+        "Firewall (UFW)": check_ufw(),
+        "SSH Service": check_ssh(),
+        "System Uptime": get_uptime(),
         "Generated At": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
+def check_root():
+    return "Yes" if os.geteuid() == 0 else "No"
 
+
+def check_ufw():
+    try:
+        result = subprocess.run(
+            ["ufw", "status"],
+            capture_output=True,
+            text=True
+        )
+
+        if "Status: active" in result.stdout:
+            return "Enabled"
+
+        return "Disabled"
+
+    except Exception:
+        return "Not Installed"
+
+
+def check_ssh():
+    try:
+        result = subprocess.run(
+            ["systemctl", "is-active", "ssh"],
+            capture_output=True,
+            text=True
+        )
+
+        return result.stdout.strip()
+
+    except Exception:
+        return "Not Installed"
+
+
+def get_uptime():
+    with open("/proc/uptime") as file:
+        seconds = float(file.readline().split()[0])
+
+    hours = int(seconds // 3600)
+
+    return f"{hours} hours"
 
 def print_report(info):
     print("=" * 60)
