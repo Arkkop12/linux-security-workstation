@@ -24,3 +24,7 @@ __pycache__/
 # Windows
 Thumbs.db
 desktop.ini
+
+# Generated reports
+reports/*.txt
+reports/*.json
