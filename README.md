@@ -1,3 +1,10 @@
+![Python](https://img.shields.io/badge/Python-3-blue)
+
+![Platform](https://img.shields.io/badge/Platform-Linux-success)
+
+![License](https://img.shields.io/badge/License-MIT-green)
+
+
 # 🛡️ Linux Security Workstation
 
 A professional Linux Mint workstation built for learning and developing Blue Team Cyber Security projects.
