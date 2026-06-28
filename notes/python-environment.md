@@ -1,15 +1,21 @@
 # Python Development Environment
 
-## Virtual Environment
+## Overview
 
-Project ini menggunakan Python Virtual Environment (.venv)
-untuk mengisolasi dependency agar tidak mengganggu Python
-global pada sistem operasi.
+This project uses Python as the primary programming language for developing Blue Team security utilities.
 
 ## Python Version
 
-Python 3.x
+Python 3
+
+## Virtual Environment
+
+A Python virtual environment (.venv) is used to isolate project dependencies from the system-wide Python installation.
 
 ## Package Manager
 
 pip
+
+## Current Dependencies
+
+No external packages are required for version 1.0.

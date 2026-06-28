@@ -1,19 +1,14 @@
-# Python Virtual Environment
-.venv/
-
-# VS Code
-.vscode/
-
 # Python
+.venv/
 __pycache__/
 *.pyc
 
-# Logs
-*.log
+# Generated Reports
+reports/*.txt
+reports/*.json
 
-# Temporary files
-*.tmp
-*.temp
+# VS Code
+.vscode/
 
 # Linux
 *~
@@ -24,7 +19,3 @@ __pycache__/
 # Windows
 Thumbs.db
 desktop.ini
-
-# Generated reports
-reports/*.txt
-reports/*.json
