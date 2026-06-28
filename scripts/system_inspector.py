@@ -5,11 +5,10 @@ import os
 import platform
 import shutil
 import socket
-import subprocess
-import time
 from datetime import datetime
 
-def get_system_information():
+
+def collect_system_information():
     total, used, free = shutil.disk_usage("/")
 
     return {
@@ -22,95 +21,78 @@ def get_system_information():
         "Processor": platform.processor(),
         "Python Version": platform.python_version(),
         "Current User": os.getenv("USER"),
-        "Disk Total (GB)": round(total / (1024**3), 2),
-        "Disk Used (GB)": round(used / (1024**3), 2),
-        "Disk Free (GB)": round(free / (1024**3), 2),
-        "Running as Root": check_root(),
-        "Firewall (UFW)": check_ufw(),
-        "SSH Service": check_ssh(),
-        "System Uptime": get_uptime(),
+        "Disk Total (GB)": round(total / (1024 ** 3), 2),
+        "Disk Used (GB)": round(used / (1024 ** 3), 2),
+        "Disk Free (GB)": round(free / (1024 ** 3), 2),
         "Generated At": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
-def check_root():
-    return "Yes" if os.geteuid() == 0 else "No"
 
 
-def check_ufw():
-    try:
-        result = subprocess.run(
-            ["ufw", "status"],
-            capture_output=True,
-            text=True
-        )
+def display_report(info):
+    print("=" * 65)
+    print("              BlueTeam System Inspector v1.0")
+    print("=" * 65)
 
-        if "Status: active" in result.stdout:
-            return "Enabled"
+    print("\n[ SYSTEM INFORMATION ]\n")
 
-        return "Disabled"
+    for key in [
+        "Hostname",
+        "Operating System",
+        "OS Version",
+        "Platform",
+        "Kernel",
+        "Architecture",
+        "Processor",
+        "Python Version",
+        "Current User"
+    ]:
+        print(f"{key:<20}: {info[key]}")
 
-    except Exception:
-        return "Not Installed"
+    print("\n[ STORAGE ]\n")
 
+    for key in [
+        "Disk Total (GB)",
+        "Disk Used (GB)",
+        "Disk Free (GB)"
+    ]:
+        print(f"{key:<20}: {info[key]}")
 
-def check_ssh():
-    try:
-        result = subprocess.run(
-            ["systemctl", "is-active", "ssh"],
-            capture_output=True,
-            text=True
-        )
+    print("\n[ REPORT ]\n")
 
-        return result.stdout.strip()
+    print(f"{'Generated At':<20}: {info['Generated At']}")
 
-    except Exception:
-        return "Not Installed"
-
-
-def get_uptime():
-    with open("/proc/uptime") as file:
-        seconds = float(file.readline().split()[0])
-
-    hours = int(seconds // 3600)
-
-    return f"{hours} hours"
-
-def print_report(info):
-    print("=" * 60)
-    print("        BlueTeam System Inspector v1.0")
-    print("=" * 60)
-
-    for key, value in info.items():
-        print(f"{key:<20}: {value}")
-
-    print("=" * 60)
+    print("\n" + "=" * 65)
 
 
-def save_txt(info):
+def export_txt(info):
     with open("reports/system_report.txt", "w") as file:
+
         file.write("BlueTeam System Inspector v1.0\n")
-        file.write("=" * 60 + "\n")
+        file.write("Linux Security Workstation Project\n")
+        file.write("=" * 65 + "\n\n")
 
         for key, value in info.items():
             file.write(f"{key:<20}: {value}\n")
 
 
-def save_json(info):
+def export_json(info):
     with open("reports/system_report.json", "w") as file:
         json.dump(info, file, indent=4)
 
 
 def main():
-    info = get_system_information()
 
-    print_report(info)
+    info = collect_system_information()
 
-    save_txt(info)
+    display_report(info)
 
-    save_json(info)
+    export_txt(info)
 
-    print("\n[+] Report exported successfully.")
-    print("[+] TXT  : reports/system_report.txt")
-    print("[+] JSON : reports/system_report.json")
+    export_json(info)
+
+    print("\nReports generated successfully.")
+    print("TXT  : reports/system_report.txt")
+    print("JSON : reports/system_report.json")
 
 
 if __name__ == "__main__":
