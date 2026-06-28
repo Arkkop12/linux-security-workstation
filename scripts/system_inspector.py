@@ -29,7 +29,7 @@ def collect_system_information():
 
 
 def display_report(info):
-    print("=" * 65)
+    print("=" *  65)
     print("              BlueTeam System Inspector v1.0")
     print("=" * 65)
 
