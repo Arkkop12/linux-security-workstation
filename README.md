@@ -1,136 +1,161 @@
 # 🛡️ Linux Security Workstation
 
-A professional Linux Mint workstation built for learning Linux System Administration, Blue Team Cyber Security, Digital Forensics, and Security Engineering.
+A professional Linux Mint workstation built for learning and developing Blue Team Cyber Security projects.
+
+This repository documents the development environment, project implementation, and learning journey toward becoming a Blue Team Security Engineer.
 
 ---
 
-## 📌 Overview
+# 📌 Featured Project
 
-This repository documents my journey in building a secure Linux Mint workstation from scratch.
+## BlueTeam System Inspector
 
-The objective of this project is not only to install software, but also to understand Linux administration, security hardening, system monitoring, automation, and engineering best practices while documenting every implementation step.
+BlueTeam System Inspector is a Python-based command line tool designed to collect essential Linux system information and generate reports in both TXT and JSON formats.
 
-This repository serves as both a learning journal and a technical portfolio.
-
----
-
-## 🎯 Objectives
-
-- Build a professional Linux Mint workstation
-- Learn Linux System Administration
-- Prepare a Blue Team Security environment
-- Improve Linux productivity and workflow
-- Document every implementation
-- Build a long-term cybersecurity portfolio
+The project was created as the first security utility developed inside this Linux Security Workstation.
 
 ---
 
-## 🛠 Technology Stack
+# ✨ Features
 
-### Operating System
+- Collect Linux system information
+- Display system information in the terminal
+- Export report to TXT
+- Export report to JSON
+- Simple and modular Python implementation
+
+---
+
+# 🛠️ Technology Stack
 
 - Linux Mint 22.3 Cinnamon
-
-### Development
-
-- Visual Studio Code
+- Python 3
 - Git
-- Python
-- Docker *(Planned)*
-
-### Security
-
-- OpenSSH
-- UFW
-- Fail2Ban *(Planned)*
-- Auditd *(Planned)*
-
-### Monitoring
-
-- journalctl
-- htop
-- btop
+- GitHub
+- Visual Studio Code
 
 ---
 
-## 📂 Repository Structure
+# 📂 Repository Structure
 
 ```text
 linux-security-workstation/
-
+│
 ├── assets/
+│   ├── images/
+│   └── screenshots/
+│
 ├── configs/
+│
 ├── notes/
+│
 ├── report/
+│
+├── reports/
+│
 ├── scripts/
+│   └── system_inspector.py
+│
 ├── .gitignore
 ├── LICENSE
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## 🚀 Roadmap
+# 🚀 Getting Started
 
-### ✅ Phase 1 — System Preparation
+Clone this repository.
 
-- Package Management
-- Workspace Initialization
-- Git Configuration
-- Repository Initialization
-- Essential Utilities
+```bash
+git clone https://github.com/Arkkop12/linux-security-workstation.git
+```
 
-### 🔄 Phase 2 — Development Environment
+Move into the project directory.
 
-- Visual Studio Code
-- Python
-- Docker
-- GitHub CLI
+```bash
+cd linux-security-workstation
+```
 
-### ⏳ Phase 3 — Security Hardening
+(Optional) Create a virtual environment.
 
-- SSH
-- UFW
-- Fail2Ban
-- Password Policy
-- Auditd
+```bash
+python3 -m venv .venv
 
-### ⏳ Phase 4 — Monitoring & Logging
+source .venv/bin/activate
+```
 
-- journalctl
-- htop
-- btop
-- Linux Log Analysis
+Run the project.
 
-### ⏳ Phase 5 — Blue Team Lab
-
-- Zeek
-- Suricata
-- Wazuh
-- Elastic Stack
+```bash
+python scripts/system_inspector.py
+```
 
 ---
 
-## 📚 Documentation
+# 📄 Output
 
-The complete documentation is available in the **report/** directory.
+The tool generates:
 
-Additional learning notes will be stored inside the **notes/** directory.
+```
+reports/system_report.txt
+
+reports/system_report.json
+```
 
 ---
 
-## 👨‍💻 Author
+# 📈 Current Progress
+
+Current Release
+
+**v1.0**
+
+Completed
+
+- Development Environment
+- Python Environment
+- Git Integration
+- BlueTeam System Inspector v1.0
+
+In Progress
+
+- Linux Security Workstation Documentation
+
+Planned
+
+- Security Assessment
+- Network Information
+- Interactive CLI
+- Additional Blue Team Utilities
+
+---
+
+# 🎯 Roadmap
+
+Version 1.1
+
+- Security Assessment
+
+Version 1.2
+
+- Network Information
+
+Version 2.0
+
+- Interactive CLI
+
+---
+
+# 👨‍💻 Author
 
 **Arka Dwi Indrastata**
 
 Informatics Student
 
-Aspiring Blue Team Security Engineer
+Blue Team Security Enthusiast
 
----
+GitHub
 
-## ⭐ Project Status
-
-**Currently Under Development**
-
-This repository will continue to grow as I learn Linux, System Administration, and Blue Team Security.
+https://github.com/Arkkop12
